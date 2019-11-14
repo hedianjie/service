@@ -1,17 +1,60 @@
 const Controller  = require('egg').Controller;
 
 class ApiController extends Controller {
+    /**
+     * 添加/编辑项目
+     */
     async addProject() {
         const {ctx, service} = this;
         const body = ctx.request.body;
         const result = await service.api.addProject(body);
+
         if(result.affectedRows === 1) {
-            ctx.body = 'xxx';
+            ctx.body = {
+                state: 0,
+                msg: '操作成功！',
+                data: {id: result.insertId}
+            };
         }
         else {
-            ctx.body = 'xxxerror';
+            ctx.body = {
+                state: 1,
+                msg: `操作失败：${result.toString()}`,
+            };
         }
 
+    }
+    /**
+     * 获取项目列表
+     */
+    async getProjectList() {
+        const {ctx, service} = this;
+        const result = await service.api.getProjectList();
+        ctx.body = {
+            state: 0,
+            msg: '获取项目列表成功!',
+            data: result
+        }
+    }
+    /**
+     * 删除项目
+     */
+    async delProject() {
+        const {ctx, service} = this;
+        const body = ctx.query;
+        const result = await service.api.delProject(body.id);
+        if(result.affectedRows === 1) {
+            ctx.body = {
+                state: 0,
+                msg: '操作成功！',
+            };
+        }
+        else {
+            ctx.body = {
+                state: 1,
+                msg: `操作失败：${result.toString()}`,
+            };
+        }
     }
 }
 
