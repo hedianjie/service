@@ -10,4 +10,7 @@ module.exports = app => {
   router.post('/api/addProject', controller.api.addProject);
   router.get('/api/getProjectList', controller.api.getProjectList);
   router.delete('/api/delProject', controller.api.delProject);
+
+  router.post('/api/addProjectApi', controller.api.addProjectApi);
+  router.delete('/api/delProjectApi', controller.api.delProjectApi);
 };

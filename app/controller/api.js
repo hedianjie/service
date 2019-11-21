@@ -7,6 +7,7 @@ class ApiController extends Controller {
     async addProject() {
         const {ctx, service} = this;
         const body = ctx.request.body;
+        console.log('addProject', body);
         const result = await service.api.addProject(body);
 
         if(result.affectedRows === 1) {
@@ -43,6 +44,50 @@ class ApiController extends Controller {
         const {ctx, service} = this;
         const body = ctx.query;
         const result = await service.api.delProject(body.id);
+        if(result.affectedRows === 1) {
+            ctx.body = {
+                state: 0,
+                msg: '操作成功！',
+            };
+        }
+        else {
+            ctx.body = {
+                state: 1,
+                msg: `操作失败：${result.toString()}`,
+            };
+        }
+    }
+
+    /**
+     * 添加/编辑项目下的API
+     */
+    async addProjectApi() {
+        const {ctx, service} = this;
+        const body = ctx.request.body;
+        console.log('addProjectApi', body);
+        const result = await service.api.addProjectApi(body);
+        if(result.affectedRows === 1) {
+            ctx.body = {
+                state: 0,
+                msg: '操作成功！',
+                data: {id: result.insertId}
+            };
+        }
+        else {
+            ctx.body = {
+                state: 1,
+                msg: `操作失败：${result.toString()}`,
+            };
+        }
+    }
+
+    /**
+     * 删除项目下的API
+     */
+    async delProjectApi() {
+        const {ctx, service} = this;
+        const body = ctx.query;
+        const result = await service.api.delProjectApi(body.id);
         if(result.affectedRows === 1) {
             ctx.body = {
                 state: 0,

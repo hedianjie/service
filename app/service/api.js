@@ -27,6 +27,27 @@ class ApiService extends Service {
         return await this.app.mysql.delete('project', {id});
     }
 
+    /**
+     * 添加/编辑项目下的API
+     */
+    async addProjectApi(parameters) {
+        let result;
+        if(parameters.id) {
+            result = await this.app.mysql.update('api', parameters);
+        }
+        else {
+            result = await this.app.mysql.insert('api', parameters);
+        }
+        return result;
+    }
+
+    /**
+     * 删除项目下的API
+     */
+    async delProjectApi(id) {
+        return await this.app.mysql.delete('api', {id});
+    }
+
 }
 
 module.exports = ApiService;
