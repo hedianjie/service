@@ -13,4 +13,5 @@ module.exports = app => {
 
   router.post('/api/addProjectApi', controller.api.addProjectApi);
   router.delete('/api/delProjectApi', controller.api.delProjectApi);
+  router.get('/api/getProjectApi', controller.api.getProjectApi);
 };

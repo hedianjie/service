@@ -101,6 +101,19 @@ class ApiController extends Controller {
             };
         }
     }
+    /**
+     * 获取项目下的所有api
+     */
+    async getProjectApi() {
+        const {ctx, service} = this;
+        const body = ctx.query;
+        const result = await service.api.getProjectApi(body);
+        ctx.body = {
+            state: 0,
+            msg: '获取项目列表成功!',
+            data: result
+        }
+    }
 }
 
 module.exports = ApiController;

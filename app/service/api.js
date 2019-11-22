@@ -47,6 +47,20 @@ class ApiService extends Service {
     async delProjectApi(id) {
         return await this.app.mysql.delete('api', {id});
     }
+    /**
+     * 获取项目下的所有api
+     */
+    async getProjectApi(body) {
+        const id = body.id;
+        if(id) {
+            return await this.app.mysql.select('api', {
+                where: {project_id: id}
+            });
+        }
+        else {
+            return [];
+        }
+    }
 
 }
 
