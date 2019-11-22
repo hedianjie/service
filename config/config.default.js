@@ -20,11 +20,11 @@ module.exports = appInfo => {
 
   config.mysql = {
     client: {
-      host: 'localhost',
+      host: '192.168.10.101',
       port: 3306,
       user: 'root',
-      password: 'root',
-      database: 'api'
+      password: 'Hedianjie2112.',
+      database: 'api_project'
     }
   }
 

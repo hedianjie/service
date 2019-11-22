@@ -1,5 +1,15 @@
 const Service = require('egg').Service;
-
+/**
+ *
+ *
+ * @class ApiService
+ * @extends {Service}
+/**
+ *
+ *
+ * @class ApiService
+ * @extends {Service}
+ */
 class ApiService extends Service {
     /**
      * 添加/编辑项目
@@ -50,7 +60,7 @@ class ApiService extends Service {
     /**
      * 获取项目下的所有api
      */
-    async getProjectApi(body) {
+    async getProjectApiList(body) {
         const id = body.id;
         if(id) {
             return await this.app.mysql.select('api', {
@@ -61,6 +71,25 @@ class ApiService extends Service {
             return [];
         }
     }
+    
+    /**
+     * 获取API详细
+     *
+     * @param {*} body
+     * @returns
+     * @memberof ApiService
+     */
+    async getProjectApiInfo(body) {
+        const id = body.id;
+        if(id) {
+            return await this.app.mysql.get('api', {id});
+        }
+        else {
+            return {};
+        }
+    }
+
+
 
 }
 

@@ -104,13 +104,30 @@ class ApiController extends Controller {
     /**
      * 获取项目下的所有api
      */
-    async getProjectApi() {
+    async getProjectApiList() {
         const {ctx, service} = this;
         const body = ctx.query;
-        const result = await service.api.getProjectApi(body);
+        const result = await service.api.getProjectApiList(body);
         ctx.body = {
             state: 0,
-            msg: '获取项目列表成功!',
+            msg: '获取成功!',
+            data: result
+        }
+    }
+
+    /**
+     *获取API详细
+     *
+     * @memberof ApiService
+     */
+    async getProjectApiInfo() {
+        const {ctx, service} = this;
+        const body = ctx.query;
+        console.log(body)
+        const result = await service.api.getProjectApiInfo(body);
+        ctx.body = {
+            state: 0,
+            msg: '获取成功!',
             data: result
         }
     }
